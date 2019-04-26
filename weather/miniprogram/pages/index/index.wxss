@@ -1,0 +1,94 @@
+.now {
+  position: relative;
+  height: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.now-address {
+  max-width: 300rpx;
+  font-size: 25rpx;
+  margin-top: 50rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, .05);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon-img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.now-weather {
+  padding-top: 100rpx;
+}
+
+.now-weather-temp {
+  padding-bottom: 30rpx;
+  text-align: center;
+  font-size: 170rpx;
+  font-weight: lighter;
+  line-height: 200rpx;
+}
+
+.now-weather-status {
+  text-align: center;
+  font-size: 50rpx;
+  line-height: 50rpx;
+}
+
+.other-info {
+  width: 400rpx;
+  margin: 0 auto;
+  padding: 50rpx 20rpx 0 20rpx
+}
+
+.other-info .hum,
+.other-info .wind {
+  display: inline-block;
+  width: 49.5%;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.other-info .hum {
+  border-right: 1px solid
+}
+
+.life-style {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.life-style-item {
+  box-sizing: border-box;
+  width: 24%;
+  height: 188rpx;
+  padding: 40rpx 0 0;
+  text-align: center;
+  margin: 0.5%;
+}
+
+.life-style-item .title {
+  font-size: 25rpx;
+  padding-bottom: 20rpx;
+}
+
+.life-style-item .text {
+  font-size: 35rpx
+}

@@ -1,0 +1,50 @@
+<view class="now">
+    <image class="bg-img" src="{{bgImg}}"></image>
+    <view class="now-address">
+        <image class="icon-img" src="../../images/position-icon.png"></image>
+        {{nowAddress.district +  nowAddress.street || '无法获取位置信息'}}
+    </view>
+    <view class="now-weather">
+        <view class="now-weather-temp">{{nowWeather.tmp?nowWeather.tmp+'°':''}}</view>
+        <view class="now-weather-status">{{nowWeather.cond_txt}}</view>
+    </view>
+    <view class="other-info">
+        <view class="hum">湿度 {{nowWeather.hum}}%</view>
+        <view class="wind">{{nowWeather.wind_dir}} : {{nowWeather.wind_sc}}级</view>
+    </view>
+</view>
+<view class="forecast"></view>
+<view class="life-style">
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">舒适度</view>
+        <view class="text">{{lifeStyle[0].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">穿衣</view>
+        <view class="text">{{lifeStyle[1].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">感冒</view>
+        <view class="text">{{lifeStyle[2].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">运动</view>
+        <view class="text">{{lifeStyle[3].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">旅游</view>
+        <view class="text">{{lifeStyle[4].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">紫外线强度</view>
+        <view class="text">{{lifeStyle[5].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">洗车</view>
+        <view class="text">{{lifeStyle[6].brf}}</view>
+    </view>
+    <view class="life-style-item" style="background:{{bgColor}}">
+        <view class="title">污染扩散</view>
+        <view class="text">{{lifeStyle[7].brf}}</view>
+    </view>
+</view>
