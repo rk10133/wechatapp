@@ -27,15 +27,24 @@
   white-space: nowrap;
 }
 
-.icon-img {
+.icon {
   display: inline-block;
   vertical-align: middle;
+}
+
+.icon-position {
+
   width: 30rpx;
   height: 30rpx;
 }
 
 .now-weather {
   padding-top: 100rpx;
+}
+
+.icon-weather {
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .now-weather-temp {
@@ -70,25 +79,53 @@
   border-right: 1px solid
 }
 
-.life-style {
+
+.forecast {
+  display: flex;
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 370rpx;
+  margin: 10rpx 4rpx 0 4rpx;
+}
+
+.forecast-item:first-child {
+  margin-left: 0;
+}
+
+.forecast-item .title {
+  font-size: 38rpx;
+  padding: 10rpx 20rpx;
+
+}
+
+.forecast-item .content view {
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+}
+
+.lifeStyle {
   display: flex;
   flex-wrap: wrap;
 }
 
-.life-style-item {
+.lifeStyle-item {
   box-sizing: border-box;
   width: 24%;
   height: 188rpx;
   padding: 40rpx 0 0;
   text-align: center;
-  margin: 0.5%;
+  margin: 1% 0.5% 0 0.5%;
 }
 
-.life-style-item .title {
+.lifeStyle-item .title {
   font-size: 25rpx;
   padding-bottom: 20rpx;
 }
 
-.life-style-item .text {
+.lifeStyle-item .text {
   font-size: 35rpx
 }

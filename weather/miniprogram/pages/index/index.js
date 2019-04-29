@@ -1,10 +1,13 @@
 Page({
   data: {
+    location: {},
     nowWeather: {},
     nowAddress: {},
     lifeStyle: {},
+    forecast: {},
     bgImg: '',
-    bgColor: ''
+    bgColor: '',
+    weatherIcon: '',
   },
 
   onLoad() {
@@ -12,21 +15,22 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.getNow(() => {
+    this.getNowWeather(this.data.location, () => {
       wx.stopPullDownRefresh();
-    });
+    })
   },
 
   getNow(callBack) {
     wx.getLocation({
       type: 'gcj02',
       success: r => {
-        this.getNowWeather(r);
+        this.getNowWeather(r, callBack);
         this.getNowAddress(r);
+        this.setData({
+          location: r
+        })
       },
-      complete: () => {
-        callBack && callBack()
-      },
+
       fail: () => {
         wx.showToast({
           title: '未授权使用位置权限，无法获取天气信息',
@@ -36,7 +40,7 @@ Page({
       }
     });
   },
-  getNowWeather(location) {
+  getNowWeather(location, callBack) {
     wx.request({
       url: 'https://free-api.heweather.net/s6/weather',
       data: {
@@ -44,8 +48,10 @@ Page({
         key: 'aa05c2fc2a79403f954e51e06faf26b3'
       },
       success: r => {
-        // console.log(r.data.HeWeather6[0])
+        console.log(r.data.HeWeather6[0])
         let url, headBgColor, bgColor;
+
+        //处理实时天气情况 将天气代码转化成文字 根据天气代码设置背景图片/背景颜色
         switch (r.data.HeWeather6[0].now.cond_code) {
           case '101':
           case '102':
@@ -93,18 +99,40 @@ Page({
             headBgColor = '#cbeefd'
             break;
         }
+
+        r.data.HeWeather6[0].daily_forecast[0].date = '今天';
+        r.data.HeWeather6[0].daily_forecast[1].date = '明天';
+        r.data.HeWeather6[0].daily_forecast[2].date = '后天';
+
+
+        //处理lifestyle
+        r.data.HeWeather6[0].lifestyle.forEach(item => {
+          item.type == 'comf' ? item.type = '舒适度' : item.type = item.type;
+          item.type == 'drsg' ? item.type = '穿衣' : item.type = item.type;
+          item.type == 'flu' ? item.type = '感冒' : item.type = item.type;
+          item.type == 'sport' ? item.type = '运动' : item.type = item.type;
+          item.type == 'trav' ? item.type = '旅游' : item.type = item.type;
+          item.type == 'uv' ? item.type = '紫外线强度' : item.type = item.type;
+          item.type == 'cw' ? item.type = '洗车' : item.type = item.type;
+          item.type == 'air' ? item.type = '空气污染' : item.type = item.type;
+        });
+
         this.setData({
           nowWeather: r.data.HeWeather6[0].now,
+          weatherIcon: 'https://cdn.heweather.com/cond_icon/' + r.data.HeWeather6[0].now.cond_code + '.png',
+          forecast: r.data.HeWeather6[0].daily_forecast,
           lifeStyle: r.data.HeWeather6[0].lifestyle,
-          //根据天气设置背景图片
           bgImg: '../../images/' + url + '.png',
-          bgColor: bgColor
+          bgColor: bgColor,
         });
         //设置headerBar背景颜色 与天气图片保持一致
         wx.setNavigationBarColor({
           frontColor: '#000000',
           backgroundColor: headBgColor
         });
+      },
+      complete: () => {
+        callBack && callBack()
       }
     })
   },
@@ -119,6 +147,18 @@ Page({
         this.setData({
           nowAddress: r.data.result.address_component
         });
+      }
+    })
+  },
+
+  chooseAddress() {
+    wx.chooseLocation({
+      success: r => {
+        this.setData({
+          location: r
+        })
+        this.getNowWeather(r);
+        this.getNowAddress(r)
       }
     })
   }
