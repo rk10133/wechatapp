@@ -78,6 +78,15 @@
   border-right: 1px solid
 }
 
+.air {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  padding-left: 10rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
 .forecast {
   display: flex;
 }

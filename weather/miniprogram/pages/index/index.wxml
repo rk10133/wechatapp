@@ -15,6 +15,7 @@
         <view class="hum">湿度 {{nowWeather.hum}}%</view>
         <view class="wind">{{nowWeather.wind_dir}} : {{nowWeather.wind_sc}}级</view>
     </view>
+    <view wx:if="{{showAir}}" class="air" style="color:{{airColor}}">{{air.qlty}}-{{air.aqi}}</view>
 </view>
 <scroll-view scroll-x="{{true}}" class="middle-scroll">
     <view class="forecast">

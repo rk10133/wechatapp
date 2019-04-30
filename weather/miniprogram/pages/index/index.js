@@ -8,6 +8,9 @@ Page({
     bgImg: '',
     bgColor: '',
     weatherIcon: '',
+    air: {},
+    airColor: '',
+    showAir: true
   },
 
   onLoad() {
@@ -130,6 +133,10 @@ Page({
           frontColor: '#000000',
           backgroundColor: headBgColor
         });
+
+        //获取空气质量AQI
+        this.getAir(r.data.HeWeather6[0].basic.parent_city)
+
       },
       complete: () => {
         callBack && callBack()
@@ -147,6 +154,56 @@ Page({
         this.setData({
           nowAddress: r.data.result.address_component
         });
+      }
+    })
+  },
+
+  getAir(city) {
+    wx.request({
+      url: 'https://free-api.heweather.net/s6/air/now?',
+      data: {
+        location: city,
+        key: 'aa05c2fc2a79403f954e51e06faf26b3'
+      },
+      success: r => {
+        //判断是否能获得控制质量数据 如果没有数据则隐藏
+        if (r.data.HeWeather6[0].status == 'permission denied') {
+          this.setData({
+            showAir: false
+          })
+          return;
+        }
+        let site = r.data.HeWeather6[0].air_now_station;
+
+        let flag = site.filter(it => {
+          return it.air_sta == this.data.nowAddress.district
+        });
+        if (flag.length != 0) {
+          this.setData({
+            air: flag[0]
+          })
+        } else {
+          this.setData({
+            air: r.data.HeWeather6[0].air_now_city
+          })
+        };
+
+        let aqi = this.data.air.aqi;
+        if (aqi <= 50) {
+          this._airColor = 'green'
+        } else if (aqi > 50 && aqi <= 100) {
+          this._airColor = 'yellow'
+        } else if (aqi > 100 && aqi <= 150) {
+          this._airColor = 'orange'
+        } else if (aqi > 150 && aqi <= 200) {
+          this._airColor = 'red'
+        } else {
+          this._airColor = 'purple'
+        };
+        this.setData({
+          showAir: true,
+          airColor: this._airColor
+        })
       }
     })
   },
