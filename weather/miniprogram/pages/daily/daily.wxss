@@ -1,0 +1,44 @@
+.container {
+  padding: 10rpx 50rpx;
+}
+
+.title {
+  text-align: center;
+  margin: 30rpx 0;
+}
+
+.date {
+  display: inline-block;
+  font-size: 26rpx;
+  vertical-align: bottom;
+}
+
+.item {
+  display: flex;
+  font-size: 33rpx;
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.item:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item .left, .item .right {
+  flex-grow: 1;
+}
+
+.item .right {
+  text-align: right;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+}

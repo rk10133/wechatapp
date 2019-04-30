@@ -1,0 +1,74 @@
+<view class="container">
+    <view class="title">
+        {{day}} /
+        <view class="date">{{dailyWeather.date}}</view>
+    </view>
+    <view class="main">
+        <view class="item">
+            <view class="left">白天</view>
+            <view class="right">
+                {{dailyWeather.cond_txt_d}} /
+                <image class="icon" src="{{weatherIcon_d}}"></image>
+            </view>
+        </view>
+        <view class="item">
+            <view class="left">夜间</view>
+            <view class="right">
+                {{dailyWeather.cond_txt_n}} /
+                <image class="icon" src="{{weatherIcon_n}}"></image>
+            </view>
+        </view>
+        <view class="item">
+            <view class="left">最高温度</view>
+            <view class="right">{{dailyWeather.tmp_max}}°</view>
+        </view>
+        <view class="item">
+            <view class="left">最低温度</view>
+            <view class="right">{{dailyWeather.tmp_min}}°</view>
+        </view>
+        <view class="item">
+            <view class="left">{{dailyWeather.wind_dir}}</view>
+            <view class="right">{{dailyWeather.wind_sc}} / 级</view>
+        </view>
+        <view class="item">
+            <view class="left">相对湿度</view>
+            <view class="right">{{dailyWeather.hum}}%</view>
+        </view>
+        <view class="item">
+            <view class="left">降水概率</view>
+            <view class="right">{{dailyWeather.pop}}%</view>
+        </view>
+        <view class="item">
+            <view class="left">降水量</view>
+            <view class="right">{{dailyWeather.pcpn}}毫米</view>
+        </view>
+        <view class="item">
+            <view class="left">紫外线强度指数</view>
+            <view class="right">{{dailyWeather.uv_index}}</view>
+        </view>
+        <view class="item">
+            <view class="left">能见度</view>
+            <view class="right">{{dailyWeather.vis}}公里</view>
+        </view>
+        <view class="item">
+            <view class="left">大气压强</view>
+            <view class="right">{{dailyWeather.pres}}帕</view>
+        </view>
+        <view class="item">
+            <view class="left">日出时间</view>
+            <view class="right">{{dailyWeather.sr}}</view>
+        </view>
+        <view class="item">
+            <view class="left">日落时间</view>
+            <view class="right">{{dailyWeather.ss}}</view>
+        </view>
+        <view class="item">
+            <view class="left">月升时间</view>
+            <view class="right">{{dailyWeather.mr}}</view>
+        </view>
+        <view class="item">
+            <view class="left">月落时间</view>
+            <view class="right">{{dailyWeather.ms}}</view>
+        </view>
+    </view>
+</view>

@@ -33,7 +33,6 @@
 }
 
 .icon-position {
-
   width: 30rpx;
   height: 30rpx;
 }
@@ -78,7 +77,6 @@
 .other-info .hum {
   border-right: 1px solid
 }
-
 
 .forecast {
   display: flex;

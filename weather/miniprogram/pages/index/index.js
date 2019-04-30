@@ -44,11 +44,10 @@ Page({
     wx.request({
       url: 'https://free-api.heweather.net/s6/weather',
       data: {
-        location: `${location.longitude}` + ',' + `${location.latitude}`,
+        location: location.longitude + ',' + location.latitude,
         key: 'aa05c2fc2a79403f954e51e06faf26b3'
       },
       success: r => {
-        console.log(r.data.HeWeather6[0])
         let url, headBgColor, bgColor;
 
         //处理实时天气情况 将天气代码转化成文字 根据天气代码设置背景图片/背景颜色
@@ -100,9 +99,9 @@ Page({
             break;
         }
 
-        r.data.HeWeather6[0].daily_forecast[0].date = '今天';
-        r.data.HeWeather6[0].daily_forecast[1].date = '明天';
-        r.data.HeWeather6[0].daily_forecast[2].date = '后天';
+        r.data.HeWeather6[0].daily_forecast[0].day = '今天';
+        r.data.HeWeather6[0].daily_forecast[1].day = '明天';
+        r.data.HeWeather6[0].daily_forecast[2].day = '后天';
 
 
         //处理lifestyle
@@ -125,6 +124,7 @@ Page({
           bgImg: '../../images/' + url + '.png',
           bgColor: bgColor,
         });
+
         //设置headerBar背景颜色 与天气图片保持一致
         wx.setNavigationBarColor({
           frontColor: '#000000',
@@ -151,6 +151,21 @@ Page({
     })
   },
 
+  toDaily(e) {
+    let dataset = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/daily/daily?day=${dataset.day}&longitude=${this.data.location.longitude}&latitude=${this.data.location.latitude}`
+    })
+  },
+
+  showDetail(e) {
+    wx.showModal({
+      title: e.currentTarget.dataset.title,
+      content: e.currentTarget.dataset.detail,
+      showCancel: false
+    })
+  },
+
   chooseAddress() {
     wx.chooseLocation({
       success: r => {
@@ -161,5 +176,12 @@ Page({
         this.getNowAddress(r)
       }
     })
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '我写的小程序 快打开看看吧',
+      path: '/pages/index/index'
+    }
   }
 })
