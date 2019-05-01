@@ -14,5 +14,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "查查天气weather",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

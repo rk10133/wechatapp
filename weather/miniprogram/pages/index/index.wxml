@@ -1,41 +1,41 @@
 <view class="now">
-    <image class="bg-img" src="{{bgImg}}"></image>
-    <view class="now-address" bindtap="chooseAddress">
-        <image class="icon-position icon" src="../../images/position-icon.png"></image>
-        {{nowAddress.district +  nowAddress.street || '无法获取位置信息'}}
+  <image class="bg-img" src="{{bgImg}}" />
+  <view class="now-address" bindtap="chooseAddress">
+    <image class="icon-position icon" src="../../images/position-icon.png" />
+    {{nowAddress.district + nowAddress.street || '无法获取位置信息'}}
+  </view>
+  <view class="now-weather">
+    <view class="now-weather-temp">{{nowWeather.tmp?nowWeather.tmp+'°':''}}</view>
+    <view class="now-weather-status">
+      <image class="icon-weather icon" src="{{weatherIcon}}" />
+      {{nowWeather.cond_txt}}
     </view>
-    <view class="now-weather">
-        <view class="now-weather-temp">{{nowWeather.tmp?nowWeather.tmp+'°':''}}</view>
-        <view class="now-weather-status">
-            <image class="icon-weather icon" src="{{weatherIcon}}"></image>
-            {{nowWeather.cond_txt}}
-        </view>
-    </view>
-    <view class="other-info">
-        <view class="hum">湿度 {{nowWeather.hum}}%</view>
-        <view class="wind">{{nowWeather.wind_dir}} : {{nowWeather.wind_sc}}级</view>
-    </view>
-    <view wx:if="{{showAir}}" class="air" style="color:{{airColor}}">{{air.qlty}}-{{air.aqi}}</view>
+  </view>
+  <view class="other-info">
+    <view class="hum">湿度 {{nowWeather.hum}}%</view>
+    <view class="wind">{{nowWeather.wind_dir}} : {{nowWeather.wind_sc}}级</view>
+  </view>
+  <view wx:if="{{showAir}}" class="air" style="color:{{airColor}}">{{air.qlty}}-{{air.aqi}}</view>
 </view>
 <scroll-view scroll-x="{{true}}" class="middle-scroll">
-    <view class="forecast">
-        <view class="forecast-item" wx:for="{{forecast}}" style="background:{{bgColor}}" bindtap="toDaily" data-day="{{item.day}}">
-            <view class="title">
-                <view>{{item.day}}</view>
-            </view>
-            <view class="content">
-                <view wx:if="{{item.cond_txt_d==item.cond_txt_n}}">{{item.cond_txt_d}}</view>
-                <view wx:else>{{item.cond_txt_d}}转{{item.cond_txt_n}}</view>
-                <view>{{item.tmp_min}}° / {{item.tmp_max}}°</view>
-                <view>降水概率 {{item.pop}}%</view>
-                <view>{{item.wind_dir}} {{item.wind_sc}} 级</view>
-            </view>
-        </view>
+  <view class="forecast">
+    <view class="forecast-item" wx:for="{{forecast}}" wx:key="item" style="background:{{bgColor}}" bindtap="toDaily" data-day="{{item.day}}">
+      <view class="title">
+        <view>{{item.day}}</view>
+      </view>
+      <view class="content">
+        <view wx:if="{{item.cond_txt_d==item.cond_txt_n}}">{{item.cond_txt_d}}</view>
+        <view wx:else>{{item.cond_txt_d}}转{{item.cond_txt_n}}</view>
+        <view>{{item.tmp_min}}° / {{item.tmp_max}}°</view>
+        <view>降水概率 {{item.pop}}%</view>
+        <view>{{item.wind_dir}} {{item.wind_sc}} 级</view>
+      </view>
     </view>
+  </view>
 </scroll-view>
 <view class="lifeStyle">
-    <view class="lifeStyle-item" wx:for="{{lifeStyle}}" style="background:{{bgColor}}" data-title="{{item.type}}" data-detail="{{item.txt}}" bindtap="showDetail">
-        <view class="title">{{item.type}}</view>
-        <view class="text">{{item.brf}}</view>
-    </view>
+  <view class="lifeStyle-item" wx:for="{{lifeStyle}}" wx:key="item" style="background:{{bgColor}}" data-title="{{item.type}}" data-detail="{{item.txt}}" bindtap="showDetail">
+    <view class="title">{{item.type}}</view>
+    <view class="text">{{item.brf}}</view>
+  </view>
 </view>

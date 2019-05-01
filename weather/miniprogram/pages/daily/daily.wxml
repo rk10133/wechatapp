@@ -8,14 +8,14 @@
             <view class="left">白天</view>
             <view class="right">
                 {{dailyWeather.cond_txt_d}} /
-                <image class="icon" src="{{weatherIcon_d}}"></image>
+                <image class="icon" src="{{weatherIcon_d}}" />
             </view>
         </view>
         <view class="item">
             <view class="left">夜间</view>
             <view class="right">
                 {{dailyWeather.cond_txt_n}} /
-                <image class="icon" src="{{weatherIcon_n}}"></image>
+                <image class="icon" src="{{weatherIcon_n}}" />
             </view>
         </view>
         <view class="item">

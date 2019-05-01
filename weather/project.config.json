@@ -2,16 +2,18 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"autoAudits": false
 	},
 	"appid": "wxbcd2aaeec5d5c7e1",
-	"projectname": "wether",
+	"projectname": "weather",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
