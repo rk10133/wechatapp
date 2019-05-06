@@ -1,0 +1,19 @@
+/* pages/index/components/flip/index.wxss */
+.container {
+    width: 600rpx;
+    height: 80rpx;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #f7f7f7;
+    border-radius: 3px;
+}
+
+.container .img {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.container .text {
+    font-size: 30rpx
+}

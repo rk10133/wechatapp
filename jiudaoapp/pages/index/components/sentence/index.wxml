@@ -1,0 +1,6 @@
+<!-- pages/index/components/sentence/index.wxml -->
+<view class="container" hidden="{{hidden}}">
+    <image class="main-img" src="{{main_img}}"></image>
+    <image class="theme-img" src="../images/theme_sentence.png"></image>
+    <text class="txt">{{txt}}</text>
+</view>

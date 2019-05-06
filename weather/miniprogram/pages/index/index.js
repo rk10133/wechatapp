@@ -109,14 +109,14 @@ Page({
 
         //处理lifestyle
         r.data.HeWeather6[0].lifestyle.forEach(item => {
-          item.type == 'comf' ? item.type = '舒适度' : item.type = item.type;
-          item.type == 'drsg' ? item.type = '穿衣' : item.type = item.type;
-          item.type == 'flu' ? item.type = '感冒' : item.type = item.type;
-          item.type == 'sport' ? item.type = '运动' : item.type = item.type;
-          item.type == 'trav' ? item.type = '旅游' : item.type = item.type;
-          item.type == 'uv' ? item.type = '紫外线强度' : item.type = item.type;
-          item.type == 'cw' ? item.type = '洗车' : item.type = item.type;
-          item.type == 'air' ? item.type = '空气污染' : item.type = item.type;
+          item.type = item.type == 'comf' ? '舒适度' : item.type;
+          item.type = item.type == 'drsg' ? '穿衣' : item.type;
+          item.type = item.type == 'flu' ? '感冒' : item.type;
+          item.type = item.type == 'sport' ? '运动' : item.type;
+          item.type = item.type == 'trav' ? '旅游' : item.type;
+          item.type = item.type == 'uv' ? '紫外线强度' : item.type;
+          item.type = item.type == 'cw' ? '洗车' : item.type;
+          item.type = item.type == 'air' ? '空气污染' : item.type;
         });
 
         this.setData({

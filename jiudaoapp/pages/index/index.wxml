@@ -1,1 +1,11 @@
-<view class="container"></view>
+<!-- pages/index/index.wxml -->
+<view class="container">
+    <view class="header">
+        <title-cmp index="{{currentData.index}}"></title-cmp>
+        <like-cmp class="like-cmp" bind:updateLikeStatus="sendLikeRequest" liked="{{currentData.like_status}}" count="{{currentData.fav_nums}}"></like-cmp>
+    </view>
+    <movie-cmp hidden="{{currentData.type!=100}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></movie-cmp>
+    <music-cmp wx:if="{{currentData.type==200}}" src="{{currentData.url}}" musicTitle="{{currentData.title}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></music-cmp>
+    <sentence-cmp hidden="{{currentData.type!=300}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></sentence-cmp>
+    <flip-cmp class="flip-cmp" bind:left="flipNext" bind:right="flipPrev" title="{{currentData.title}}" isFirst="{{first}}" isLatest="{{latest}}"></flip-cmp>
+</view>

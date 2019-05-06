@@ -1,0 +1,7 @@
+<!-- pages/index/components/music/index.wxml -->
+<view class="container" hidden="{{hidden}}">
+    <image class="main-img  {{playing?'rotation':''}}" src="{{main_img}}" />
+    <image class="play-img " bindtap="onPlay" src="{{playing?pause_img:play_img}}" musicTitle="{{musicTitle}}" />
+    <image class="theme-img" src="../images/theme_music.png" />
+    <text class="txt">{{txt}}</text>
+</view>

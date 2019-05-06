@@ -1,15 +1,17 @@
+/* pages/index/components/movie/index.wxss */
 .container {
     display: inline-flex;
     flex-direction: row;
     padding: 10rpx;
+    margin-right: 10rpx;
 }
 
-.container image {
+.container .img {
     width: 32rpx;
     height: 28rpx;
 }
 
-.container text {
+.container .text {
     position: relative;
     bottom: 10rpx;
     left: 10rpx;

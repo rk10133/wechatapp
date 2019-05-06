@@ -1,4 +1,5 @@
+<!-- pages/index/components/movie/index.wxml -->
 <view class="container" bindtap="tapLike">
-    <image src="{{liked ? likedImg : likeImg}}" />
-    <text>{{count}}</text>
+    <image class="img" src="{{liked ? likedImg : likeImg}}" />
+    <text class="text">{{count}}</text>
 </view>

@@ -1,0 +1,44 @@
+/* pages/index/index_components/head/index.wxss */
+.container {
+    display: inline-flex;
+    height: 60rpx
+}
+
+.index {
+    display: flex;
+    align-items: baseline
+}
+
+.no {
+    font-size: 30rpx;
+    margin-left: 10rpx;
+    margin-right: 5rpx;
+}
+
+.num {
+    font-size: 50rpx;
+    line-height: 60rpx;
+    font-weight: bold;
+    margin-right: 15rpx;
+}
+
+.line {
+    height: 40rpx;
+    border-right: 1rpx solid;
+    margin-right: 15rpx;
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+}
+
+.month {
+    font-size: 26rpx;
+    line-height: 26rpx;
+}
+
+.year {
+    font-size: 25rpx;
+    text-align: center;
+}

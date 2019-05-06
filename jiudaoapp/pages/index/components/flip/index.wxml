@@ -1,0 +1,6 @@
+<!-- pages/index/components/flip/index.wxml -->
+<view class="container">
+    <image class="img" bindtap="clickLeft" src="{{isLatest?leftAngleDis:leftAngle}}" />
+    <text class="text">{{title}}</text>
+    <image class="img" bindtap="clickRight" src="{{isFirst?rightAngleDis:rightAngle}}" />
+</view>

@@ -1,13 +1,10 @@
+// pages/index/components/like/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    liked: {
-      type: Boolean
-      // value: value
-      // observer: function () {}
-    },
+    liked: Boolean,
     count: Number
   },
 
@@ -31,6 +28,12 @@ Component({
         liked: !liked,
         count
       })
+
+      let status = this.properties.liked ? 'like' : 'cancel';
+      this.triggerEvent('updateLikeStatus', {
+        status
+      })
+
     }
   }
 })

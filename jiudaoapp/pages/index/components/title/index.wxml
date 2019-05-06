@@ -1,0 +1,12 @@
+<!-- pages/index/index_components/head/index.wxml -->
+<view class="container">
+    <view class="index">
+        <text class="no">No.</text>
+        <text class="num">{{_index}}</text>
+        <view class="line"></view>
+    </view>
+    <view class="date">
+        <text class="month">{{month}}</text>
+        <text class="year">{{year}}</text>
+    </view>
+</view>

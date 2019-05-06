@@ -1,0 +1,24 @@
+/* pages/index/components/index-base.wxss */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.main-img {
+    width: 750rpx;
+    height: 500rpx;
+}
+
+.theme-img {
+    width: 46rpx;
+    height: 142rpx;
+    position: relative;
+    right: 310rpx;
+    bottom: 60rpx;
+}
+
+.txt {
+    line-height: 50rpx;
+    max-width: 500rpx;
+}
