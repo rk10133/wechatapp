@@ -40,8 +40,23 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": 0,
+					"name": "book_detail",
+					"pathName": "pages/book_detail/index",
+					"query": "bid=1049",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "book",
+					"pathName": "pages/book/index",
+					"query": "",
+					"scene": null
+				}
+			]
 		}
 	}
 }

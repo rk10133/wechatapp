@@ -11,34 +11,36 @@ const errorTip = {
 }
 
 class HTTP {
-    request(params) {
-        // url, data, method
+    request({
+        url,
+        data = {},
+        method = 'GET'
+    }) {
+        return new Promise((resolve, reject) => {
+            this._request(url, resolve, reject, data, method)
+        })
+    }
 
-        if (!params.method)
-            params.method = 'GET';
-
+    _request(url, resolve, reject, data = {}, method = 'GET') {
         wx.request({
-            url: api.base_url + params.url,
-            data: params.data,
-            method: params.method,
+            url: api.base_url + url,
+            data,
+            method,
             header: {
                 'content-type': 'application/json',
                 'appkey': api.appkey
             },
             success: r => {
-                let code = r.statusCode.toString();
-                //通过请求返回的statusCode判断是否返回了数据
-                //如果有数据返回则将数据返回给success
+                const code = r.statusCode.toString();
                 if (code.startsWith('2')) {
-                    //如果要求执行success回调 则传回success
-                    params.success && params.success(r.data)
-                }
-                //如果未能返回数据则根据error_code进行提示
-                else {
+                    resolve(r.data)
+                } else {
+                    reject();
                     this._showError(r.data.error_code)
                 }
             },
             fail: () => {
+                reject();
                 this._showError(2)
             }
         })

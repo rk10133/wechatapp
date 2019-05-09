@@ -1,0 +1,17 @@
+<!-- pages/book/index.wxml -->
+<search-cmp wx:if="{{showSearchCmp}}" signal="{{reachBottomSignal}}" bind:hide="hideSearch"></search-cmp>
+<view class="container" wx:else>
+    <view class="header">
+        <view class="search" bindtap="clickSearchArea">
+            <image class="icon" src="../../images/book/icon-search.png" />
+            <text>搜索书籍</text>
+        </view>
+    </view>
+    <view class="wrap">
+        <view class="content">
+            <block wx:for="{{bookList}}" wx:key="{{item.id}}">
+                <book-cmp book="{{item}}"></book-cmp>
+            </block>
+        </view>
+    </view>
+</view>

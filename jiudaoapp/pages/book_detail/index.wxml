@@ -1,0 +1,72 @@
+<!-- pages/book_detail/index.wxml -->
+<!-- 引出处理detail的wxs文件 -->
+<wxs src="./book_detail.wxs" module="filter" />
+<view class="container">
+    <view class="cover">
+        <image class="img" src="{{detail.image}}" />
+        <text class="title">{{detail.title}}</text>
+        <text class="author">{{detail.author}}</text>
+    </view>
+    <view class="comment section">
+        <text class="title">精选评论</text>
+        <text wx:if="{{comment.length==0}}" class="no-comment">暂无评论</text>
+        <view class="comment-list">
+            <block wx:for="{{filter.commentFilter(comment,5)}}" wx:key="index">
+                <tag-cmp class="item" text="{{item.content}}">
+                    <!-- tag组件中传入插槽 显示评论数量 -->
+                    <text class="num" slot="num">{{'+'+item.nums}}</text>
+                </tag-cmp>
+            </block>
+        </view>
+    </view>
+    <view class="section intro">
+        <text class="title">内容简介</text>
+        <text class="text" decode="{{true}}">{{filter.introFilter(detail.summary)}}</text>
+    </view>
+    <view class="section desc">
+        <text class="title">书籍信息</text>
+        <view class="text">
+            <view class="left">
+                <text>出版社</text>
+                <text>出版日期</text>
+                <text>页数</text>
+                <text>定价</text>
+                <text>规格</text>
+            </view>
+            <view class="right">
+                <text>{{detail.publisher || ''}}</text>
+                <text>{{detail.pubdate || ''}}</text>
+                <text>{{detail.pages || ''}}</text>
+                <text>{{detail.price || ''}}</text>
+                <text>{{detail.binding || ''}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="fake-comment" wx:if="{{!showRealComment}}">
+    <view class="wrap" bindtap="clickCommentArea">
+        <text>添加评论</text>
+    </view>
+    <view class="like-cmp">
+        <like-cmp bind:updateLikeStatus="sendLikeRequest" liked="{{likeStatus}}" count="{{likeCount}}"></like-cmp>
+    </view>
+</view>
+<view class="real-comment" wx:if="{{showRealComment}}">
+    <view class="tip">
+        <text wx:if="{{comment.length==0}}" class="no-comment">暂无评论</text>
+        <text wx:else>点击标签+1</text>
+        <text class="cancel" bindtap="hideRealComment">取消</text>
+    </view>
+    <view class="comment-list" wx:if="{{comment.length!=0}}">
+        <block wx:for="{{filter.commentFilter(comment,10)}}" wx:key="index">
+            <tag-cmp class="item" text="{{item.content}}" bind:tapTag="commentRequest">
+                <!-- tag组件中传入插槽 显示评论数量 -->
+                <text class="num" slot="num">{{'+'+item.nums}}</text>
+            </tag-cmp>
+        </block>
+    </view>
+    <view class="input-container">
+        <input class="input" bindconfirm="commentRequest" auto-focus="{{true}}" placeholder="输入评论 不超过12个字"></input>
+    </view>
+</view>
+<mask-cmp bindtap="hideRealComment" wx:if="{{showRealComment}}"></mask-cmp>

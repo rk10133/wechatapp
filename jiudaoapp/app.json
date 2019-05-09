@@ -1,13 +1,41 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/my/index",
+    "pages/book/index",
+    "pages/book_detail/index"
   ],
-  "requiredBackgroundModes": ["audio"],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "旧岛App",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#c7c7c7",
+    "selectedColor": "#000000",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./images/tabBar/index@light.png",
+        "selectedIconPath": "./images/tabBar/index@dark.png"
+      },
+      {
+        "pagePath": "pages/book/index",
+        "text": "书架",
+        "iconPath": "./images/tabBar/book@light.png",
+        "selectedIconPath": "./images/tabBar/book@dark.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "./images/tabBar/my@light.png",
+        "selectedIconPath": "./images/tabBar/my@dark.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

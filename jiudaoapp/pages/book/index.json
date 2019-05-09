@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "book-cmp": "./components/single_book/index",
+    "search-cmp": "../../components/search/index"
+  }
+}

@@ -3,7 +3,7 @@ import {
     HTTP
 } from "../../lib/api"
 
-let http = new HTTP()
+const http = new HTTP()
 
 Page({
     data: {

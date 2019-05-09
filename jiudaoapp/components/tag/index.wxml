@@ -1,0 +1,5 @@
+<!-- components/tag/index.wxml -->
+<view class="container" bindtap="clickShortComment">
+    <text>{{text}}</text>
+    <slot name="num"></slot>
+</view>

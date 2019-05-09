@@ -1,0 +1,47 @@
+<!-- components/search/index.wxml -->
+<view class="container">
+    <view class="head">
+        <view class="search-bar">
+            <image class="icon search" src="../../images/book/icon-search.png" />
+            <input class="input" value="{{keyword}}" bindconfirm="searchRequest" auto-focus="{{true}}" placeholder="请输入书籍名称" placeholder-class="in-bar" />
+            <image class="icon clear" bindtap="clearSearchWord" src="../../images/book/icon-delete.png" />
+        </view>
+        <view class="cancel" bindtap="hideSearchCmp">取消</view>
+    </view>
+    <view wx:if="{{!showSearchResult}}">
+        <view class="search-type history">
+            <view class="title">
+                <image class="icon search-history" src="../../images/book/search-history.png" />
+                <text>历史搜索</text>
+            </view>
+            <view class="list">
+                <block wx:for="{{history}}" wx:key="index">
+                    <tag-cmp class="item" bind:tapTag="searchRequest" text="{{item}}"></tag-cmp>
+                </block>
+            </view>
+        </view>
+        <view class="search-type hot">
+            <view class="title">
+                <image class="icon  search-hot" src="../../images/book/search-hot.png" />
+                <text>热门搜索</text>
+            </view>
+            <view class="list">
+                <block wx:for="{{hot}}" wx:key="index">
+                    <tag-cmp class="item" bind:tapTag="searchRequest" text="{{item}}"></tag-cmp>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{showSearchResult}}">
+        <view class="wrap">
+            <view class="search-result" wx:if="{{total!=0}}">
+                <block wx:for="{{arr}}" wx:key="{{item.id}}">
+                    <book-cmp book="{{item}}" class="single-book"></book-cmp>
+                </block>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{total==0}}" class="no-result">暂无结果</view>
+    <loading-cmp class="loading-center" wx:if="{{showLoadingIcon}}"></loading-cmp>
+    <loading-cmp class="loading-bottom" wx:if="{{requestPending}}"></loading-cmp>
+</view>

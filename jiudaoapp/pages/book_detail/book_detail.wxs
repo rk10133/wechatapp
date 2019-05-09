@@ -1,0 +1,19 @@
+//注意 wxs不支持ES6
+
+//处理评论显示条数
+var comment = function (commentList, count) {
+    return commentList.slice(0, count)
+}
+
+//处理书籍内容简介中被转义的\n换行符
+var intro = function (text) {
+    if (!text)
+        return
+    var reg = getRegExp('\\\\n', 'g')
+    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+}
+
+module.exports = {
+    commentFilter: comment,
+    introFilter: intro
+}

@@ -1,0 +1,51 @@
+/* components/loading/index.wxss */
+.container {
+    position: relative;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.bounce {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #999;
+    border-radius: 50%;
+    opacity: .7;
+
+    -webkit-animation: bounce 2s infinite ease-in-out;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.bounce-2 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+@-webkit-keyframes bounce {
+
+    0%,
+    100% {
+        -webkit-transform: scale(0.0)
+    }
+
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0)
+    }
+
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0)
+    }
+}

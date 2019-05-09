@@ -1,0 +1,5 @@
+<!-- components/loading/index.wxml -->
+<view class="container">
+    <view class="bounce bounce-1"></view>
+    <view class="bounce bounce-2"></view>
+</view>

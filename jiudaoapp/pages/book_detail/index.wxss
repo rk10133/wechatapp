@@ -1,0 +1,198 @@
+/* pages/book_detail/index.wxss */
+.container {
+    width: 100%;
+    background: #f5f5f5;
+}
+
+.container .img {
+    width: 200rpx;
+    height: 300rpx;
+    box-shadow: 2px 2px 3px#e3e3e3
+}
+
+.container .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding-top: 40rpx;
+    padding-bottom: 30rpx;
+}
+
+.cover .title {
+    margin-top: 30rpx;
+    font-size: 38rpx;
+    font-weight: bold;
+    color: #2f2f2f;
+}
+
+.cover .author {
+    font-size: 28rpx;
+    color: #999;
+    margin-top: 20rpx;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20rpx;
+    padding: 20rpx;
+    background: #fff;
+}
+
+.section .title {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #2f2f2f;
+    margin-bottom: 20rpx;
+}
+
+.comment.section {
+    padding-bottom: 0;
+}
+
+.comment.section .no-comment {
+    color: #999;
+    padding-bottom: 20rpx;
+    font-size: 25rpx
+}
+
+.comment-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comment-list .item {
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+/* 给自定义组件添加样式 */
+.comment-list>.item>view {
+    background-color: #eefbff;
+}
+
+/* 给自定义组件添加样式 */
+.comment-list>.item:first-child>view {
+    background-color: #fce8f1;
+}
+
+/* 给自定义组件添加样式 */
+.comment-list>.item:nth-child(2)>view {
+    background-color: #fcf8d8;
+}
+
+/* 给插槽添加样式 */
+.comment-list .num {
+    margin-left: 10rpx;
+    font-size: 21rpx;
+    color: #aaa;
+}
+
+.intro .text {
+    text-indent: 58rpx;
+    font-size: 27rpx;
+    line-height: 40rpx;
+    font-weight: lighter;
+}
+
+.desc .text {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 100rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+
+.desc .text .left,
+.desc .text .right {
+    display: flex;
+    flex-direction: column
+}
+
+.desc .text .left {
+    margin-right: 50rpx;
+    color: #999;
+}
+
+.fake-comment {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100rpx;
+    border-top: 1px solid #e3e3e3;
+    background-color: #fff;
+}
+
+.fake-comment .wrap {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 50rpx;
+    margin-left: 20rpx;
+    padding: 0 20rpx;
+    border: 1px solid #999;
+    border-radius: 15px;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.like-cmp {
+    margin-left: 50rpx;
+}
+
+.real-comment {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+}
+
+.real-comment .tip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70rpx;
+    border-top: 1px solid #f5f5f5;
+}
+
+.real-comment .tip text {
+    padding: 20rpx;
+}
+
+.real-comment .tip>text:first-child {
+    font-size: 28rpx;
+    color: #bbb;
+}
+
+.real-comment .cancel {
+    font-size: 26rpx;
+    font-weight: lighter;
+}
+
+.real-comment .comment-list {
+    padding: 0 20rpx;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.real-comment .input-container {
+    width: 100%;
+    padding: 20rpx;
+}
+
+.real-comment .input {
+    height: 100rpx;
+    margin: 0 20rpx;
+    padding: 10rpx 20rpx;
+    font-size: 28rpx;
+    background-color: #f5f5f5;
+}
