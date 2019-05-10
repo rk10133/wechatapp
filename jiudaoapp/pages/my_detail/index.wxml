@@ -1,0 +1,15 @@
+<!-- pages/my_detail/index.wxml -->
+<view class="container">
+    <view class="header">
+        <title-cmp class="epsoide" index="{{currentData.index}}" />
+        <view class="like-container">
+            <like-cmp bind:updateLikeStatus="sendLikeRequest" class="like" liked="{{currentData.like_status}}" count="{{currentData.fav_nums}}" />
+            <imgBtn-cmp class="share-btn" open-type="share">
+                <image class="share" slot="img" src="../../components/images/share.png" />
+            </imgBtn-cmp>
+        </view>
+    </view>
+    <movie-cmp wx:if="{{currentData.type==100}}" main_img="{{currentData.image}}" txt="{{currentData.content}}" />
+    <music-cmp wx:if="{{currentData.type==200}}" src="{{currentData.url}}" musicTitle="{{currentData.title}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></music-cmp>
+    <sentence-cmp wx:if="{{currentData.type==300}}" main_img="{{currentData.image}}" txt="{{currentData.content}}" />
+</view>

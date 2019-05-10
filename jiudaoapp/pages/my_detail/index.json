@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "title-cmp": "../index/components/title/index",
+    "like-cmp": "../../components/like/index",
+    "movie-cmp": "../index/components/movie/index",
+    "music-cmp": "../index/components/music/index",
+    "sentence-cmp": "../index/components/sentence/index",
+    "imgBtn-cmp": "../../components/img_button/index"
+  },
+  "disableScroll": true
+}

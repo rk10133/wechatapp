@@ -34,7 +34,8 @@ Component({
     showSearchResult: false,
     requestPending: false,
     showLoadingIcon: false,
-    historyLen: 0
+    historyLen: 0,
+    searching: false
   },
 
   attached() {
@@ -84,12 +85,19 @@ Component({
     },
 
     searchRequest(e) {
+      let value = e.detail.value || e.detail.text
+      if (!value) return
+
+
+      if (this.data.searching) return
+
+
       this.setData({
         showSearchResult: true,
-        showLoadingIcon: true
+        showLoadingIcon: true,
+        searching: true
       })
 
-      let value = e.detail.value || e.detail.text
 
       if (e.detail.text) {
         this.setData({
@@ -108,13 +116,19 @@ Component({
         this.updateData(r.books);
         this.setTotal(r.total);
         this.setData({
-          showLoadingIcon: false
+          showLoadingIcon: false,
+          searching: false
+        })
+      }, fail => {
+        this.setData({
+          searching: false
         })
       })
     },
 
-    clearSearchWord(e) {
+    clearSearchWord() {
       //调用pagination中的方法每次搜索前清空数据
+      if (this.data.searching) return
       this.resetArr();
       this.setData({
         keyword: '',

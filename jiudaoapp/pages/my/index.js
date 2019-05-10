@@ -21,11 +21,11 @@ Page({
     classics: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad() {
-    this.userAuth();
+    this.userAuth()
+  },
+
+  onShow() {
     this.getMybookCount();
     this.getMyfavor()
   },
@@ -72,6 +72,11 @@ Page({
         })
       }
     })
-  }
+  },
 
+  toDetail(e) {
+    wx.navigateTo({
+      url: `/pages/my_detail/index?cid=${e.detail.cid}&type=${e.detail.type}`
+    })
+  },
 })

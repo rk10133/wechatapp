@@ -1,10 +1,10 @@
 {
   "usingComponents": {
+    "title-cmp": "./components/title/index",
     "like-cmp": "../../components/like/index",
     "movie-cmp": "./components/movie/index",
     "music-cmp": "./components/music/index",
     "sentence-cmp": "./components/sentence/index",
-    "title-cmp": "./components/title/index",
     "flip-cmp": "./components/flip/index",
     "imgBtn-cmp": "../../components/img_button/index"
   }

@@ -31,5 +31,13 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {
+    onTap() {
+      // 注意catchtap与bindtap的区别
+      this.triggerEvent('tap', {
+        cid: this.properties.classic.id,
+        type: this.properties.classic.type
+      })
+    }
+  }
 })

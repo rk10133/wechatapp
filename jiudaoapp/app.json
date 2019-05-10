@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/index",
     "pages/book/index",
-    "pages/book_detail/index"
+    "pages/book_detail/index",
+    "pages/my_detail/index"
   ],
   "requiredBackgroundModes": [
     "audio"
@@ -17,7 +18,8 @@
   "tabBar": {
     "color": "#c7c7c7",
     "selectedColor": "#000000",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "./images/tabBar/index@light.png",

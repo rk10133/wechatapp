@@ -1,5 +1,5 @@
 <!-- components/preview/index.wxml -->
-<view class="container">
+<view class="container" catchtap="onTap">
     <view class="head">
         <tag-cmp text="{{typeText}}" class="tag" />
         <like-cmp class="like" read-only="{{true}}" liked="{{true}}" count="{{classic.fav_nums}}" />

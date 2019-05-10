@@ -21,7 +21,7 @@
     </view>
     <view class="preview">
         <block wx:for="{{classics}}" wx:key="">
-            <preview-cmp class="item" classic="{{item}}" />
+            <preview-cmp class="item" bind:tap="toDetail" classic="{{item}}" />
         </block>
     </view>
 </view>
