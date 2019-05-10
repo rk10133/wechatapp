@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color: #fff;
 }
 
 .head {
@@ -68,7 +69,7 @@
     margin-top: 120rpx;
 }
 
-.hot {
+.history {
     margin-top: 30rpx;
 }
 
@@ -91,6 +92,11 @@
 .search-type .list .item {
     margin-right: 20rpx;
     margin-bottom: 20rpx;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 25rpx;
 }
 
 .search-result {

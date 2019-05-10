@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "imgBtn-cmp": "../../components/img_button/index",
+    "preview-cmp": "../../components/preview/index"
+  }
 }

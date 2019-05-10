@@ -1,2 +1,27 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<!-- pages/my/index.wxml -->
+<view class="container">
+    <image class="bg-img" src="../../images/my/bg.png" />
+    <!-- <open-data type="userAvatarUrl" class="avatar" /> -->
+    <imgBtn-cmp wx:if="{{!authorized}}" class="avatar-position" open-type="getUserInfo" bind:userInfo="getUserInfo">
+        <image class="avatar" slot="img" src="../../images/my/default.png" />
+    </imgBtn-cmp>
+    <view wx:if="{{authorized}}" class="avatar-container avatar-position">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" />
+        <text>{{userInfo.nickName}}</text>
+    </view>
+    <view class="about">
+        <view class="us">
+            <image class="img" src="../../images/my/about.png" />
+            <text class="txt">关于</text>
+        </view>
+        <view class="like">
+            <text>{{myBookCount}}</text>
+            <text class="txt">喜欢的书</text>
+        </view>
+    </view>
+    <view class="preview">
+        <block wx:for="{{classics}}" wx:key="">
+            <preview-cmp class="item" classic="{{item}}" />
+        </block>
+    </view>
+</view>

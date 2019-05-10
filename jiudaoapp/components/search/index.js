@@ -33,7 +33,8 @@ Component({
     searchResultTotal: null,
     showSearchResult: false,
     requestPending: false,
-    showLoadingIcon: false
+    showLoadingIcon: false,
+    historyLen: 0
   },
 
   attached() {
@@ -49,6 +50,7 @@ Component({
       })
     })
 
+    this.getHistoryLength()
   },
 
   /**
@@ -95,6 +97,12 @@ Component({
         })
       }
 
+      //缓存搜索历史
+      keywordModel.storageSearch(value);
+      this.setData({
+        history: keywordModel.getHistory()
+      })
+
       keywordModel.search(0, value).then(r => {
         //使用pagination中定义的方法更新数据
         this.updateData(r.books);
@@ -102,8 +110,6 @@ Component({
         this.setData({
           showLoadingIcon: false
         })
-        //缓存搜索历史
-        keywordModel.storageSearch(value)
       })
     },
 
@@ -120,5 +126,18 @@ Component({
       this.resetArr();
       this.triggerEvent('hide')
     },
+
+    clearSearchHistory() {
+      wx.removeStorageSync('q');
+      this.setData({
+        historyLen: 0
+      })
+    },
+
+    getHistoryLength() {
+      this.setData({
+        historyLen: keywordModel.getHistory().length
+      })
+    }
   }
 })

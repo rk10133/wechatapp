@@ -2,7 +2,12 @@
 <view class="container">
     <view class="header">
         <title-cmp index="{{currentData.index}}"></title-cmp>
-        <like-cmp class="like-cmp" bind:updateLikeStatus="sendLikeRequest" liked="{{currentData.like_status}}" count="{{currentData.fav_nums}}"></like-cmp>
+        <view class="like-share-container">
+            <like-cmp class="like-cmp" bind:updateLikeStatus="sendLikeRequest" liked="{{currentData.like_status}}" count="{{currentData.fav_nums}}"></like-cmp>
+            <imgBtn-cmp class="share-cmp" open-type="share">
+                <image class="share" slot="img" src="../../components/images/share.png" />
+            </imgBtn-cmp>
+        </view>
     </view>
     <movie-cmp hidden="{{currentData.type!=100}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></movie-cmp>
     <music-cmp wx:if="{{currentData.type==200}}" src="{{currentData.url}}" musicTitle="{{currentData.title}}" main_img="{{currentData.image}}" txt="{{currentData.content}}"></music-cmp>

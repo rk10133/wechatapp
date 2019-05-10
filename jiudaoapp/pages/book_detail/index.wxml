@@ -47,8 +47,11 @@
     <view class="wrap" bindtap="clickCommentArea">
         <text>添加评论</text>
     </view>
-    <view class="like-cmp">
+    <view class="like-share-container">
         <like-cmp bind:updateLikeStatus="sendLikeRequest" liked="{{likeStatus}}" count="{{likeCount}}"></like-cmp>
+        <imgBtn-cmp class="share-cmp" open-type="share">
+            <image class="share" slot="img" src="../../components/images/share.png" />
+        </imgBtn-cmp>
     </view>
 </view>
 <view class="real-comment" wx:if="{{showRealComment}}">

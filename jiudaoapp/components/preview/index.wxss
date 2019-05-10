@@ -1,0 +1,44 @@
+/* components/preview/index.wxss */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 330rpx;
+    background-color: #ffffff;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80rpx;
+}
+
+.tag {
+    margin-left: 20rpx;
+}
+
+.like {
+    margin-top: 4rpx;
+    margin-right: 4rpx;
+}
+
+.other-img {
+    width: 100%;
+    height: 240rpx;
+}
+
+.music-img {
+    width: 240rpx;
+    height: 240rpx;
+    border-radius: 50%;
+}
+
+.text {
+    padding: 30rpx;
+    font-size: 28rpx;
+    height: 130rpx;
+    color: #666;
+    overflow: hidden;
+}

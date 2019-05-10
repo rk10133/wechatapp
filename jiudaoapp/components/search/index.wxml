@@ -9,20 +9,9 @@
         <view class="cancel" bindtap="hideSearchCmp">取消</view>
     </view>
     <view wx:if="{{!showSearchResult}}">
-        <view class="search-type history">
-            <view class="title">
-                <image class="icon search-history" src="../../images/book/search-history.png" />
-                <text>历史搜索</text>
-            </view>
-            <view class="list">
-                <block wx:for="{{history}}" wx:key="index">
-                    <tag-cmp class="item" bind:tapTag="searchRequest" text="{{item}}"></tag-cmp>
-                </block>
-            </view>
-        </view>
         <view class="search-type hot">
             <view class="title">
-                <image class="icon  search-hot" src="../../images/book/search-hot.png" />
+                <image class="icon" src="../../images/book/search-hot.png" />
                 <text>热门搜索</text>
             </view>
             <view class="list">
@@ -31,14 +20,24 @@
                 </block>
             </view>
         </view>
-    </view>
-    <view wx:if="{{showSearchResult}}">
-        <view class="wrap">
-            <view class="search-result" wx:if="{{total!=0}}">
-                <block wx:for="{{arr}}" wx:key="{{item.id}}">
-                    <book-cmp book="{{item}}" class="single-book"></book-cmp>
+        <view class="search-type history" wx:if="{{historyLen!=0}}">
+            <view class="title">
+                <image class="icon" src="../../images/book/search-history.png" />
+                <text>历史搜索</text>
+                <text class="clear-btn" bindtap="clearSearchHistory">清空</text>
+            </view>
+            <view class="list">
+                <block wx:for="{{history}}" wx:key="index">
+                    <tag-cmp class="item" bind:tapTag="searchRequest" text="{{item}}"></tag-cmp>
                 </block>
             </view>
+        </view>
+    </view>
+    <view wx:if="{{showSearchResult}}">
+        <view class="search-result" wx:if="{{total!=0}}">
+            <block wx:for="{{arr}}" wx:key="{{item.id}}">
+                <book-cmp book="{{item}}" class="single-book"></book-cmp>
+            </block>
         </view>
     </view>
     <view wx:if="{{total==0}}" class="no-result">暂无结果</view>

@@ -1,66 +1,77 @@
 // pages/my/index.js
+import {
+  HTTP
+} from "../../lib/api"
+const http = new HTTP()
+
+import {
+  BookRequest
+} from "../../lib/book_request/book"
+const bookRequest = new BookRequest()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    authorized: false,
+    userInfo: {},
+    myBookCount: 0,
+    classics: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad() {
+    this.userAuth();
+    this.getMybookCount();
+    this.getMyfavor()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  userAuth() {
+    wx.getSetting({
+      success: r => {
+        if (r.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: r => {
+              this.setData({
+                authorized: true,
+                userInfo: r.userInfo
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  getUserInfo(e) {
+    if (e.detail.userInfo)
+      this.setData({
+        authorized: true,
+        userInfo: e.detail.userInfo
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  getMybookCount() {
+    bookRequest.getMyBook().then(r => {
+      this.setData({
+        myBookCount: r.count
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getMyfavor() {
+    http.request({
+      url: 'classic/favor',
+      success: r => {
+        this.setData({
+          classics: r
+        })
+      }
+    })
   }
+
 })

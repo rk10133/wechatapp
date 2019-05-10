@@ -5,6 +5,7 @@
     "music-cmp": "./components/music/index",
     "sentence-cmp": "./components/sentence/index",
     "title-cmp": "./components/title/index",
-    "flip-cmp": "./components/flip/index"
+    "flip-cmp": "./components/flip/index",
+    "imgBtn-cmp": "../../components/img_button/index"
   }
 }

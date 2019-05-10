@@ -13,8 +13,25 @@
     width: 100%;
 }
 
-.like-cmp {
-    margin-top: 5rpx;
+.like-share-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20rpx;
+}
+
+
+.share-cmp {
+    margin-left: 10rpx;
+}
+
+.share-cmp>button {
+    line-height: 50rpx;
+}
+
+.share {
+    width: 32rpx;
+    height: 32rpx;
 }
 
 .flip-cmp {

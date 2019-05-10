@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/index",
     "pages/book/index",
-    "pages/book_detail/index"
+    "pages/book_detail/index",
+    "pages/index-detail/index"
   ],
   "requiredBackgroundModes": [
     "audio"

@@ -5,7 +5,8 @@ Component({
    */
   properties: {
     liked: Boolean,
-    count: Number
+    count: Number,
+    readOnly: Boolean
   },
 
   /**
@@ -21,6 +22,7 @@ Component({
    */
   methods: {
     tapLike() {
+      if (this.properties.readOnly) return
       let liked = this.properties.liked;
       let count = this.properties.count;
       liked ? count = count - 1 : count = count + 1;
