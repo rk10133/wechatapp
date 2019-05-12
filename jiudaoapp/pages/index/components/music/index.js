@@ -38,10 +38,14 @@ Component({
     onPlay() {
       if (!this.data.playing) {
         this.setData({
-            playing: true
-          }),
-          musicMgr.src = this.properties.src,
-          musicMgr.title = this.properties.musicTitle
+          playing: true
+        })
+        if (musicMgr.src == this.properties.src) {
+          musicMgr.play()
+        } else {
+          musicMgr.src = this.properties.src
+        }
+        musicMgr.title = this.properties.musicTitle
       } else {
         this.setData({
             playing: false

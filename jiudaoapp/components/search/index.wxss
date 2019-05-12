@@ -119,6 +119,5 @@
 }
 
 .loading-bottom {
-    margin-top: 10rpx;
     margin-bottom: 30rpx;
 }
