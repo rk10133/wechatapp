@@ -2,7 +2,7 @@
 <view class="container" catchtap="onTap">
     <view class="head">
         <tag-cmp text="{{typeText}}" class="tag" />
-        <like-cmp class="like" read-only="{{true}}" liked="{{true}}" count="{{classic.fav_nums}}" />
+        <!-- <like-cmp class="like" read-only="{{true}}" liked="{{true}}" count="{{classic.fav_nums}}" /> -->
     </view>
     <image class="{{classic.type==200?'music-img':'other-img'}}" src="{{classic.image}}"></image>
     <view class="text">{{classic.content}}</view>

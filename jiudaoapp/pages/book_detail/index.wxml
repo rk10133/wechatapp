@@ -9,12 +9,12 @@
     </view>
     <view class="comment section">
         <text class="title">精选评论</text>
-        <text wx:if="{{comment.length==0}}" class="no-comment">暂无评论</text>
+        <text wx:if="{{!comment}}" class="no-comment">暂无评论</text>
         <view class="comment-list">
             <block wx:for="{{filter.commentFilter(comment,5)}}" wx:key="index">
                 <tag-cmp class="item" text="{{item.content}}">
                     <!-- tag组件中传入插槽 显示评论数量 -->
-                    <text class="num" slot="num">{{'+'+item.nums}}</text>
+                    <!-- <text class="num" slot="num">{{'+'+item.nums}}</text> -->
                 </tag-cmp>
             </block>
         </view>
@@ -29,16 +29,18 @@
             <view class="left">
                 <text>出版社</text>
                 <text>出版日期</text>
+                <text>ISBN</text>
                 <text>页数</text>
                 <text>定价</text>
                 <text>规格</text>
             </view>
             <view class="right">
-                <text>{{detail.publisher || ''}}</text>
-                <text>{{detail.pubdate || ''}}</text>
-                <text>{{detail.pages || ''}}</text>
-                <text>{{detail.price || ''}}</text>
-                <text>{{detail.binding || ''}}</text>
+                <text>{{detail.publisher || '-'}}</text>
+                <text>{{detail.pubdate || '-'}}</text>
+                <text>{{detail.isbn || '-'}}</text>
+                <text>{{detail.pages || '-'}}</text>
+                <text>{{detail.price || '-'}}</text>
+                <text>{{detail.binding || '-'}}</text>
             </view>
         </view>
     </view>
@@ -48,7 +50,7 @@
         <text>添加评论</text>
     </view>
     <view class="like-share-container">
-        <like-cmp bind:updateLikeStatus="sendLikeRequest" liked="{{likeStatus}}" count="{{likeCount}}"></like-cmp>
+        <!-- <like-cmp bind:updateLikeStatus="sendLikeRequest" liked="{{likeStatus}}" count="{{likeCount}}"></like-cmp> -->
         <imgBtn-cmp class="share-cmp" open-type="share">
             <image class="share" slot="img" src="../../components/images/share.png" />
         </imgBtn-cmp>
@@ -57,14 +59,14 @@
 <view class="real-comment" wx:if="{{showRealComment}}">
     <view class="tip">
         <text wx:if="{{comment.length==0}}" class="no-comment">暂无评论</text>
-        <text wx:else>点击标签+1</text>
+        <text wx:else>添加评论</text>
         <text class="cancel" bindtap="hideRealComment">取消</text>
     </view>
     <view class="comment-list" wx:if="{{comment.length!=0}}">
         <block wx:for="{{filter.commentFilter(comment,10)}}" wx:key="index">
             <tag-cmp class="item" text="{{item.content}}" bind:tapTag="commentRequest">
                 <!-- tag组件中传入插槽 显示评论数量 -->
-                <text class="num" slot="num">{{'+'+item.nums}}</text>
+                <!-- <text class="num" slot="num">{{'+'+item.nums}}</text> -->
             </tag-cmp>
         </block>
     </view>

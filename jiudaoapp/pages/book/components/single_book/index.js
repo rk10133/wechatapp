@@ -20,7 +20,7 @@ Component({
   methods: {
     clickBook() {
       wx.navigateTo({
-        url: `/pages/book_detail/index?bid=${this.properties.book.id}`
+        url: `/pages/book_detail/index?bid=${this.properties.book.book_id}`
       })
     }
   }

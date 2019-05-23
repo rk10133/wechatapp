@@ -12,16 +12,16 @@
     <view class="about">
         <view class="us">
             <image class="img" src="../../images/my/about.png" />
-            <text class="txt">关于</text>
+            <text class="txt">期刊</text>
         </view>
         <view class="like">
-            <text>{{myBookCount}}</text>
-            <text class="txt">喜欢的书</text>
+            <text>0</text>
+            <text class="txt">书籍</text>
         </view>
     </view>
-    <view class="preview">
+    <!-- <view class="preview">
         <block wx:for="{{classics}}" wx:key="">
             <preview-cmp class="item" bind:tap="toDetail" classic="{{item}}" />
         </block>
-    </view>
+    </view> -->
 </view>

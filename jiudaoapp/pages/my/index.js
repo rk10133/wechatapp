@@ -1,13 +1,9 @@
 // pages/my/index.js
-import {
-  HTTP
-} from "../../lib/api"
-const http = new HTTP()
+// import {
+//   HTTP
+// } from "../../lib/api"
+// const http = new HTTP()
 
-import {
-  BookRequest
-} from "../../lib/book_request/book"
-const bookRequest = new BookRequest()
 
 Page({
 
@@ -17,18 +13,14 @@ Page({
   data: {
     authorized: false,
     userInfo: {},
-    myBookCount: 0,
     classics: null
   },
 
   onLoad() {
-    this.userAuth()
+    this.userAuth();
   },
 
-  onShow() {
-    this.getMybookCount();
-    this.getMyfavor()
-  },
+  onShow() {},
 
   userAuth() {
     wx.getSetting({
@@ -40,6 +32,7 @@ Page({
                 authorized: true,
                 userInfo: r.userInfo
               })
+              console.log(this.data)
             }
           })
         }
@@ -55,28 +48,10 @@ Page({
       })
   },
 
-  getMybookCount() {
-    bookRequest.getMyBook().then(r => {
-      this.setData({
-        myBookCount: r.count
-      })
-    })
-  },
-
-  getMyfavor() {
-    http.request({
-      url: 'classic/favor',
-      success: r => {
-        this.setData({
-          classics: r
-        })
-      }
-    })
-  },
 
   toDetail(e) {
-    wx.navigateTo({
-      url: `/pages/my_detail/index?cid=${e.detail.cid}&type=${e.detail.type}`
-    })
+    // wx.navigateTo({
+    //   url: `/pages/my_detail/index?cid=${e.detail.cid}&type=${e.detail.type}`
+    // })
   },
 })

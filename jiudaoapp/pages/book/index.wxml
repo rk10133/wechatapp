@@ -8,6 +8,7 @@
         </view>
     </view>
     <view class="wrap">
+        <view class="title">热门书籍</view>
         <view class="content">
             <block wx:for="{{bookList}}" wx:key="{{item.id}}">
                 <book-cmp book="{{item}}"></book-cmp>

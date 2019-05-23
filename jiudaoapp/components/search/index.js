@@ -1,15 +1,10 @@
 // components/search/index.js
 import {
-  paginationBehav
-} from "../../lib/pagination"
-
-import {
-  KeyWordModel
-} from "./keyword"
-const keywordModel = new KeyWordModel()
+  HTTP
+} from "../../lib/api"
+const http = new HTTP()
 
 Component({
-  behaviors: [paginationBehav],
 
   /**
    * 组件的属性列表
@@ -28,129 +23,151 @@ Component({
   data: {
     keyword: '',
     history: [],
-    hot: [],
-    // searchResult: [],
-    searchResultTotal: null,
+    searchResult: [],
     showSearchResult: false,
-    requestPending: false,
-    showLoadingIcon: false,
-    historyLen: 0,
-    searching: false
+    showCenterLoadingIcon: false,
+    showBottomLoadingIcon: false,
+    currentPage: 1,
+    lastPage: 0,
+    key: 'q',
   },
 
   attached() {
     //渲染历史搜索列表
     this.setData({
-      history: keywordModel.getHistory()
+      history: this.getHistory('q')
     })
 
-    //渲染热门搜索列表
-    keywordModel.getHot().then(r => {
-      this.setData({
-        hot: r.hot
-      })
-    })
-
-    this.getHistoryLength()
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+
     loadMore() {
-      if (!this.data.keyword) return;
+      if (!this.data.keyword) return
+      if (this.data.currentPage == this.data.lastPage) return
+      this.setData({
+        pending: true,
+        showBottomLoadingIcon: true,
+      })
 
-      //防止短时间内重复请求数据
-      if (this.data.requestPending) return;
-
-      let len = this.getCurrentStart();
-      if (this.hasMoreData()) {
+      this.serachRequest(this.data.keyword, this.data.currentPage + 1).then(r => {
+        this.updateSearchResult(r.data)
         this.setData({
-          requestPending: true
+          pending: false,
+          currentPage: r.current_page,
+          showBottomLoadingIcon: false
         })
-        keywordModel.search(len, this.data.keyword)
-          .then(r => {
-            this.updateData(r.books);
-            this.setData({
-              requestPending: false
-            })
-          }, fail => {
-            //请求失败时也要进行解锁 防止出现死锁
-            this.setData({
-              requestPending: false
-            })
-          })
-      }
+      }).catch(() => {
+        this.setData({
+          pending: false,
+          showBottomLoadingIcon: false,
+        })
+      })
+
+
     },
 
-    searchRequest(e) {
+    search(e) {
       let value = e.detail.value || e.detail.text
-      if (!value) return
+      if (!value) return;
 
 
-      if (this.data.searching) return
-
-
+      if (this.data.pending) return
       this.setData({
+        searchResult: [],
         showSearchResult: true,
-        showLoadingIcon: true,
-        searching: true
+        pending: true,
+        showCenterLoadingIcon: true,
+        keyword: value
       })
 
-
-      if (e.detail.text) {
+      this.serachRequest(value, 1).then(r => {
+        this.updateSearchResult(r.data)
         this.setData({
-          keyword: e.detail.text
+          pending: false,
+          showCenterLoadingIcon: false,
+          lastPage: r.last_page,
+          currentPage: r.current_page
         })
-      }
+      }).catch(() => {
+        this.setData({
+          pending: false,
+          showCenterLoadingIcon: false,
+        })
+      })
 
-      //缓存搜索历史
-      keywordModel.storageSearch(value);
+      this.storageSearch(value)
+    },
+
+    serachRequest(value, page) {
+      return http.request({
+        url: 'book/read',
+        data: {
+          where: {
+            or: [
+              ["title", "=", value],
+              ["author", "=", value]
+            ]
+          },
+          page,
+          limit: 6
+        }
+      })
+    },
+
+
+    hideSearchCmp() {
       this.setData({
-        history: keywordModel.getHistory()
+        showSearchResult: false,
+        keyword: '',
+        searchResult: []
       })
-
-      keywordModel.search(0, value).then(r => {
-        //使用pagination中定义的方法更新数据
-        this.updateData(r.books);
-        this.setTotal(r.total);
-        this.setData({
-          showLoadingIcon: false,
-          searching: false
-        })
-      }, fail => {
-        this.setData({
-          searching: false
-        })
-      })
+      this.triggerEvent('hide')
     },
 
     clearSearchWord() {
-      //调用pagination中的方法每次搜索前清空数据
-      if (this.data.searching) return
-      this.resetArr();
+      if (this.data.pending) return
       this.setData({
-        keyword: '',
-        showSearchResult: false
+        keyword: ''
       })
     },
 
-    hideSearchCmp() {
-      this.resetArr();
-      this.triggerEvent('hide')
+    storageSearch(keyword) {
+      let words = this.getHistory('q') || []
+      if (!words.includes(keyword)) {
+        if (words.length >= 10) {
+          words.pop()
+        }
+        words.unshift(keyword)
+        wx.setStorageSync('q', words)
+      } else {
+        words.splice(words.indexOf(keyword), 1)
+        words.unshift(keyword)
+        wx.setStorageSync('q', words)
+      }
+      this.setData({
+        history: words
+      })
+    },
+
+    updateSearchResult(arr) {
+      let newArr = this.data.searchResult.concat(arr)
+      this.setData({
+        searchResult: newArr
+      })
+    },
+
+    getHistory() {
+      return wx.getStorageSync('q') || []
     },
 
     clearSearchHistory() {
       wx.removeStorageSync('q');
       this.setData({
-        historyLen: 0
-      })
-    },
-
-    getHistoryLength() {
-      this.setData({
-        historyLen: keywordModel.getHistory().length
+        history: []
       })
     }
   }

@@ -1,9 +1,8 @@
 // pages/book/index.js
 import {
-  BookRequest
-} from "../../lib/book_request/book"
-
-const bookRequest = new BookRequest()
+  HTTP
+} from "../../lib/api"
+const http = new HTTP()
 
 Page({
 
@@ -20,9 +19,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    bookRequest.getHotList().then(r => {
+    this.readBookList()
+  },
+
+  readBookList() {
+    http.request({
+      url: 'hot_list/read'
+    }).then(r => {
       this.setData({
-        bookList: r
+        bookList: r.data
       })
     })
   },
